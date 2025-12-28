@@ -62,36 +62,36 @@
     <button onclick="send()">Send</button>
   </div>
 
-  <script>
+<script>
 function send() {
   const input = document.getElementById("msg");
   const chat = document.getElementById("chat");
 
-  if (!input || !chat) {
-    alert("ID mismatch. msg ya chat missing.");
-    return;
-  }
-
   if (input.value.trim() === "") return;
 
   let userText = input.value.toLowerCase();
-let reply = "Samajh nahi aya.";
+  let reply = "Please type PRICE, TIMING or BOOK.";
 
-if (userText.includes("hi") || userText.includes("hello")) {
-  reply = "Hi! I'm the salon assistant. I can share prices, timings & booking info instantly.";
-} 
-else if (userText.includes("price")) {
-  reply = "Please tell me which product price you want.";
-}
-else if (userText.includes("contact")) {
-  reply = "Type PRICE, TIMING or BOOK";
-}
+  if (userText.includes("hi") || userText.includes("hello")) {
+    reply = "Hi! I'm the salon assistant. I can share prices, timings & booking info instantly.";
+  } 
+  else if (userText.includes("price")) {
+    reply = "Please tell me which service price you want (Haircut, Facial, etc).";
+  }
+  else if (userText.includes("time") || userText.includes("timing")) {
+    reply = "Our salon is open daily from 10 AM to 10 PM.";
+  }
+  else if (userText.includes("book") || userText.includes("appointment")) {
+    reply = "To book an appointment, please WhatsApp us at +971XXXXXXXXX.";
+  }
+  else if (userText.includes("contact") || userText.includes("whatsapp")) {
+    reply = "You can contact us on WhatsApp: +971XXXXXXXXX.";
+  }
 
-chat.innerHTML += "<div><b>AI:</b> " + reply + "</div>";
-  setTimeout(() => {
-        chat.scrollTop = chat.scrollHeight;
-  }, 300);
+  chat.innerHTML += "<div class='user'><b>You:</b> " + input.value + "</div>";
+  chat.innerHTML += "<div class='bot'><b>AI:</b> " + reply + "</div>";
 
+  chat.scrollTop = chat.scrollHeight;
   input.value = "";
 }
 </script>
