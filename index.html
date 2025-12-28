@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>AI Business Assistant</title>
+  <title>Salon WhatsApp Auto-Reply Bot</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -56,7 +56,7 @@
 <body>
 
   <div class="container">
-    <h2>AI Business Assistant</h2>
+    <h2>Salon WhatsApp Auto-Reply Bot</h2>
     <div id="chat"></div>
     <input id="msg" placeholder="Type your message..." />
     <button onclick="send()">Send</button>
@@ -78,13 +78,13 @@ function send() {
 let reply = "Samajh nahi aya.";
 
 if (userText.includes("hi") || userText.includes("hello")) {
-  reply = "Hello! How can I help you?";
+  reply = "Hi! I'm the salon assistant. I can share prices, timings & booking info instantly.";
 } 
 else if (userText.includes("price")) {
   reply = "Please tell me which product price you want.";
 }
 else if (userText.includes("contact")) {
-  reply = "You can contact us on WhatsApp.";
+  reply = "Type PRICE, TIMING or BOOK";
 }
 
 chat.innerHTML += "<div><b>AI:</b> " + reply + "</div>";
@@ -96,6 +96,5 @@ chat.innerHTML += "<div><b>AI:</b> " + reply + "</div>";
 }
 </script>
 </body>
-
 
 </html>
