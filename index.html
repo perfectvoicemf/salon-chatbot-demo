@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Salon WhatsApp Auto-Reply Bot</title>
+  <meta charset="UTF-8">
+  <title>Salon WhatsApp Auto-Reply Bot</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-}
-.container {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 6px;
-}
-#chat {
-  height: 300px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
-.user { color: blue; margin-bottom: 5px; }
-.bot { color: green; margin-bottom: 10px; }
-input {
-  width: 80%;
-  padding: 8px;
-}
-button {
-  padding: 8px 12px;
-}
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    #chat {
+      height: 300px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
+    .user {
+      color: blue;
+      margin-bottom: 6px;
+    }
+
+    .bot {
+      color: green;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 78%;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 20%;
+      padding: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Salon WhatsApp Auto-Reply Bot</h2>
-  <div id="chat">
-    <div class="bot"><b>AI:</b> Hi! I'm the salon assistant. Type PRICE, TIMING or BOOK.</div>
-  </div>
-  <input id="msg" placeholder="Type your message..." />
+  <h2>Salon WhatsApp Auto-Reply Bot (Demo)</h2>
+
+  <div id="chat"></div>
+
+  <input id="msg" placeholder="Type message like PRICE, TIMING, BOOK..." />
   <button onclick="send()">Send</button>
 </div>
 
@@ -53,38 +78,42 @@ function send() {
 
   if (input.value.trim() === "") return;
 
-  let userText = input.value.toLowerCase();
-  let reply = "Please type PRICE, TIMING or BOOK.";
+  const userText = input.value.trim().toLowerCase();
+  let reply = "Sorry, please type <b>PRICE</b>, <b>TIMING</b> or <b>BOOK</b>.";
 
-  if (userText.includes("hi") || userText.includes("hello")) {
-    reply = "Hello! I can share prices, timings & booking info.";
+  if (
+    userText.includes("hi") ||
+    userText.includes("hello") ||
+    userText.includes("salam")
+  ) {
+    reply = "Hi 👋 Welcome to our salon.<br>Type <b>PRICE</b>, <b>TIMING</b> or <b>BOOK</b>.";
   }
   else if (userText.includes("price")) {
-    reply = "Which service price do you want? Haircut, Facial or Shave.";
+    reply =
+      "💇‍♂️ Haircut: 30 AED<br>" +
+      "💆 Facial: 80 AED<br>" +
+      "💅 Manicure: 50 AED<br><br>" +
+      "Type <b>BOOK</b> to book appointment.";
   }
-  else if (userText.includes("haircut")) {
-    reply = "Haircut price is AED 30.";
+  else if (userText.includes("timing") || userText.includes("time")) {
+    reply =
+      "⏰ Salon Timings:<br>" +
+      "Mon – Sat: 10 AM – 9 PM<br>" +
+      "Sunday: Closed";
   }
-  else if (userText.includes("facial")) {
-    reply = "Facial price is AED 80.";
-  }
-  else if (userText.includes("shave")) {
-    reply = "Shave price is AED 20.";
-  }
-  else if (userText.includes("time") || userText.includes("timing")) {
-    reply = "Salon timings: 10 AM to 10 PM (Daily).";
-  }
-  else if (userText.includes("book") || userText.includes("appointment")) {
-    reply = "To book an appointment, WhatsApp us at +971XXXXXXXXX.";
-  }
-  else if (userText.includes("contact") || userText.includes("whatsapp")) {
-    reply = "Contact us on WhatsApp: +971XXXXXXXXX.";
+  else if (userText.includes("book")) {
+    reply =
+      "📅 To book appointment:<br>" +
+      "Please WhatsApp us on:<br>" +
+      "<b>+971-50-1234567</b>";
   }
 
-  chat.innerHTML += "<div class='user'><b>You:</b> " + input.value + "</div>";
-  chat.innerHTML += "<div class='bot'><b>AI:</b> " + reply + "</div>";
+  chat.innerHTML += `<div class="user"><b>You:</b> ${input.value}</div>`;
+  chat.innerHTML += `<div class="bot"><b>Bot:</b> ${reply}</div>`;
+
   chat.scrollTop = chat.scrollHeight;
   input.value = "";
+  input.focus();
 }
 </script>
 
