@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Business Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #chat {
+      height: 300px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 12px;
+    }
+
+    .user {
+      color: blue;
+    }
+
+    .bot {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>AI Business Assistant</h2>
+    <div id="chat"></div>
+    <input id="msg" placeholder="Type your message..." />
+    <button onclick="send()">Send</button>
+  </div>
+
+  <script>
+function send() {
+  const input = document.getElementById("msg");
+  const chat = document.getElementById("chat");
+
+  if (!input || !chat) {
+    alert("ID mismatch. msg ya chat missing.");
+    return;
+  }
+
+  if (input.value.trim() === "") return;
+
+  let userText = input.value.toLowerCase();
+let reply = "Samajh nahi aya.";
+
+if (userText.includes("hi") || userText.includes("hello")) {
+  reply = "Hello! How can I help you?";
+} 
+else if (userText.includes("price")) {
+  reply = "Please tell me which product price you want.";
+}
+else if (userText.includes("contact")) {
+  reply = "You can contact us on WhatsApp.";
+}
+
+chat.innerHTML += "<div><b>AI:</b> " + reply + "</div>";
+  setTimeout(() => {
+        chat.scrollTop = chat.scrollHeight;
+  }, 300);
+
+  input.value = "";
+}
+</script>
+</body>
+
+</html>
